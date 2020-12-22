@@ -6,6 +6,16 @@ function mustBeInteger(req, res, next) {
         next()
     }
 }
+// //by name 
+function mustBeString(req,res, next){
+    const name = req.params.name;
+    if (name===""){
+        res.status(400).json({message :'Name Must Be In String '})
+    }
+    else{
+        next()
+    }
+}
 function checkFieldsPost(req, res, next) {
     const { title, content, tags } = req.body
     if (title && content && tags) {
@@ -16,5 +26,6 @@ function checkFieldsPost(req, res, next) {
 }
 module.exports = {
     mustBeInteger,
+    mustBeString,
     checkFieldsPost
 }

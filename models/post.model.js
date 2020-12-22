@@ -1,18 +1,8 @@
-const filename = '../data/post.json'
+const filename = 'C:\\Users\\Dell\\Desktop\\API\\data\\post.json'
 let posts = require(filename)
 const helper = require('../helper/helper.js')
-function getPosts() {}
-function getPost(id) { }
-function insertPost(newPost) { }
-function updatePost(id, newPost) { }
-function deletePost(id) { }
-module.exports = {
-    insertPost,
-    getPosts,
-    getPost,
-    updatePost,
-    deletePost
-}
+
+
 // getposts method 
 function getPosts() {
     return new Promise((resolve, reject) => {
@@ -26,13 +16,20 @@ function getPosts() {
     })
 }
 //getpost
-function getPost(id) {
-    return new Promise((resolve, reject) => {
-        helper.mustBeInArray(posts, id)
-            .then(post => resolve(post))
-            .catch(err => reject(err))
+function getPost(name){
+    return new Promise ((resolve ,reject)=>{
+        helper.mustBeInArray(posts,name)
+        .then(post => resolve(post))
+        .catch(err=>reject (err))
     })
 }
+// function getPost(id) {
+//     return new Promise((resolve, reject) => {
+//         helper.mustBeInArray(posts, id)
+//             .then(post => resolve(post))
+//             .catch(err => reject(err))
+//     })
+// }
 //insertpost
 function insertPost(newPost) {
     return new Promise((resolve, reject) => {
@@ -43,8 +40,8 @@ function insertPost(newPost) {
         } 
         newPost = { ...id, ...date, ...newPost }
         posts.push(newPost)
-        helper.wri
-        teJSONFile(filename, posts)
+
+        helper.writeJSONFile(filename, posts)
         resolve(newPost)
     })
 }
@@ -77,4 +74,11 @@ function deletePost(id) {
         })
         .catch(err => reject(err))
     })
+    
 }
+module.exports = {
+    insertPost,
+    getPosts,
+    getPost,
+    updatePost,
+    deletePost}
